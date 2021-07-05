@@ -1,0 +1,103 @@
+import java.util.Scanner;
+
+public class ATM_Demo {
+
+	public static void main(String[] args) {
+		
+		Scanner input=new Scanner(System.in);
+		
+		String UserNum1="001";
+		String UserPwd1="123456";
+		String UserName1="张三";
+		double Balance1=1000;
+		
+		String UserNum2="002";
+		String UserPwd2="123456";
+		String UserName2="李四";
+		double Balance2=2000;
+		
+		String UserNum3="003";
+		String UserPwd3="123456";
+		String UserName3="王五";
+		double Balance3=3000;
+		
+		String UserName;
+		double Balance=0;
+		int miss=1;
+		
+		while(true) {
+			
+			System.out.println("欢迎进入 ATM_Demo 系统！");
+			System.out.println("请输入卡号：");
+			String UserNum=input.next();
+			System.out.println("请输入密码：");
+			String UserPwd=input.next();
+			
+			if (UserNum.equals(UserNum1) && UserPwd.equals(UserPwd1)) {
+				
+				UserName=UserName1;
+				Balance=Balance1;
+				System.out.println("\n您好！"+UserName+"先生/女士\n"+"您的余额为"+Balance+"！\n");
+				
+			}else if (UserNum.equals(UserNum2) && UserPwd.equals(UserPwd2)) {
+				
+				UserName=UserName2;
+				Balance=Balance2;
+				System.out.println("\n您好！"+UserName+"先生/女士\n"+"您的余额为"+Balance+"\n");
+				
+			}else if (UserNum.equals(UserNum3) && UserPwd.equals(UserPwd3)) {
+				
+				UserName=UserName3;
+				Balance=Balance3;
+				System.out.println("\n您好！"+UserName+"先生/女士\n"+"您的余额为"+Balance+"\n");
+				
+				
+			}else {
+				
+				if (miss<3) {
+					
+					System.out.println("\n您的帐号密码输入错误请重新输入！\n您已经账号密码输入错误"+miss+"次，还剩"+(3-miss)+"次机会！\n");
+					miss++;
+					continue;
+				}else {
+					System.out.println("\n此账户已冻结！请24h后重试！"+"\n");
+					continue;
+				}
+				
+				
+			}
+			
+			while(true) {
+				
+				System.out.println("请选择业务：\n1.存款\n2.取款\n3.退出");
+				int choose=input.nextInt();
+				
+				if (choose==1) {
+					System.out.println("请输入存款金额:");
+					double money=input.nextDouble();
+					if (money>0) {
+						Balance=Balance+money;
+						System.out.println("已存入，您的余额为："+Balance);
+					}else {
+						System.out.println("存款金额输入错误！");
+						continue;
+					}
+					}else if (choose==2) {
+						System.out.println("请输入取款金额:");
+						double money=input.nextDouble();
+						if (money>0 && money<=Balance) {
+							Balance=Balance-money;
+							System.out.println("已取出，您的余额为："+Balance);
+						}else {
+							System.out.println("取款金额输入错误或余额不足！");
+							continue;
+				}
+				}else if (choose==3) {
+					break;
+				}
+			}
+			
+		}
+	}
+
+}
