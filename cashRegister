@@ -1,0 +1,65 @@
+import java.text.DecimalFormat;
+import java.util.Scanner;
+
+public class cashRegister {
+
+	public static void main(String[] args) {
+		
+		Scanner input=new Scanner(System.in);
+		
+		String n1="荣耀flypods3";
+		double p1=599;
+		String num1="001";
+		
+		String n2="华为Nova6（5G）";
+		double p2=3599;
+		String num2="002";
+		
+		String n3="飞利浦271E";
+		double p3=550;
+		String num3="003";
+		
+		double p = 0;
+		
+		while(1==1) {
+		System.out.println("欢迎使用超市收银系统！\n请输入商品编号:");
+		String n=input.next();
+		
+		if (n.equals(num1)) {
+			n=n1;
+			p=p1;
+		}else if (n.equals(num2)) {
+			n=n2;
+			p=p2;
+		}else if (n.equals(num3)) {
+			n=n3;
+			p=p3;
+		}else {
+			System.out.println("查无此商品！");
+			System.exit(0);
+		}
+		
+		System.out.println("请输入数量：");
+		int x=input.nextInt();
+		
+		double pz=p*x;
+		
+		System.out.println("品名："+n+"\n"+"数量："+x+"\n"+"总价："+pz);
+		
+		System.out.println("付款：");
+		double fu=input.nextDouble();
+		if (fu>pz) {
+			DecimalFormat df =new DecimalFormat("0.00");
+			String s =df.format(fu-pz);
+			double zl=Double.valueOf(s);
+			System.out.println("找零："+zl+"\n交易结束！ \n祝您生活愉快！\n\n");
+		}else if (fu==pz) {
+			System.out.println("无需找零！\n交易结束！ \n祝您生活愉快！\n\n");
+		 }else  {
+			System.out.println("金额不足,需要再补"+(pz-fu)+"元！");
+			break;
+		  }
+		}
+	}
+
+}
